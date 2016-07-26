@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+test-app
+coverage.lcov
+npm-debug.log
+sftp-config.json

@@ -1,0 +1,41 @@
+{
+  "name": "rpio2",
+  "version": "0.1.1",
+  "description": "Control Raspberry Pi GPIO pins with node.js. Fast and easy to use.",
+  "main": "lib/gpio2.js",
+  "dependencies": {
+    "rpio": "^0.9.11"
+  },
+  "devDependencies": {
+    "wait-promise": "^0.3.2",
+    "babel-cli": "6.x.x",
+    "babel-runtime": "6.x.x",
+    "babel-preset-es2015-loose": "6.x.x",
+    "babel-preset-stage-1": "6.x.x",
+    "babel-plugin-transform-runtime": "6.x.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akira-cn/rpio2.git"
+  },
+  "keywords": [
+    "rpio",
+    "bcm2835",
+    "gpio",
+    "gpiomem",
+    "i2c",
+    "mmap",
+    "pi",
+    "pwm",
+    "raspberry",
+    "raspberrypi",
+    "raspberry pi",
+    "rpi",
+    "spi"
+  ],
+  "author": "akira-cn",
+  "license": "MIT"
+}
