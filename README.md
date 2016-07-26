@@ -93,11 +93,11 @@ process.on("SIGINT", function(){
 #### Methods
 
   * [Gpio(pin, activeLow) - Constructor](#gpiopinactivelow)
-  * [open(mode[, valueOrState]) - Export the GPIO to userspace](#openmodevalueorstate)
+  * [open(mode[, valueOrState]) - Export the GPIO to userspace](#openmode-valueorstate)
   * [close() - Unexport the GPIO](#close)
   * [read() - Get GPIO value](#read)
   * [write(value) - Set GPIO value](#writevalue)
-  * [toggle() - Change GPIO value](#troggle)
+  * [toggle() - Change GPIO value](#toggle)
   * [sleep(ms[,async]) - Sleep for a few milliseconds](#sleepmsasync)
 
 #### Statics
@@ -109,7 +109,7 @@ process.on("SIGINT", function(){
 
   * [value:0|1 - Set/Get GPIO value](#value01)
   * [mode:0|1 - Set/Get GPIO input/output direction](#mode01)
-  * [activeLow:boolean - GPIO activeLow setting](#activelowboolean)
+  * [activeLow:boolean - GPIO activeLow setting](#activelow-boolean)
 
 #### Events
 
