@@ -1,6 +1,6 @@
 {
   "name": "rpio2",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Control Raspberry Pi GPIO pins with node.js. Fast and easy to use.",
   "main": "lib/gpio2.js",
   "dependencies": {
