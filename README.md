@@ -93,7 +93,7 @@ process.on("SIGINT", function(){
 #### Methods
 
   * [Gpio(pin, activeLow) - Constructor](#gpiopinactivelow)
-  * [open(mode[, valueOrState]) - Export the GPIO to userspace](#openmode-valueorstate)
+  * [open(mode[, state]) - Export the GPIO to userspace](#openmode-state)
   * [close() - Unexport the GPIO](#close)
   * [read() - Get GPIO value](#read)
   * [write(value) - Set GPIO value](#writevalue)
@@ -202,7 +202,7 @@ If you want to map to gpio number directly, see [Gpio.init(options)](#gpioinitop
 
 ### Methods
 
-##### open(mode[, valueOrState])
+##### open(mode[, state])
 
 Open a pin for input or output. Valid modes are:
 
@@ -211,7 +211,7 @@ Open a pin for input or output. Valid modes are:
 
 For output pins, the second parameter defines the initial value of the pin, rather than having to issue a separate .write() call. This can be critical for devices which must have a stable value, rather than relying on the initial floating value when a pin is enabled for output but hasn't yet been configured with a value.
 
-For input pins, the second parameter can be used to configure the internal pullup or pulldown resistors state, see [mode:0|1](#mode01) for more details.
+For input pins, the second parameter can be used to configure the internal pullup or pulldown resistors state, see [mode:0|1](#mode01) [state:0|1](#state01) for more details.
 
 ##### close()
 
@@ -245,6 +245,9 @@ Get or set a velue to a GPIO **synchronously**.
 
 The pin direction, pass either Gpio.INPUT for read mode or Gpio.OUTPUT for write mode.
 
+##### state:0|1
+
+The pin state. For input pins, state can be either Gpio.POLL\_HIGHT or Gpio.POLL\_LOW. For output pins, it is equivalent to `value` that state can be either Gpio.HIGH or Gpio.LOW. 
 
 ##### activeLow: boolean
 
