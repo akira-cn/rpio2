@@ -99,7 +99,9 @@ process.on("SIGINT", function(){
   * [write(value) - Set GPIO value](#writevalue)
   * [toggle() - Change GPIO value](#toggle)
   * [sleep(ms[,async]) - Sleep for a few milliseconds](#sleepmsasync)
-
+  * [createReadStream(pin[, options]) - Create a readable stream from a pin](#createreadstreampin-options)
+  * [createWriteStream(pin[, options]) - Create a writable stream for a pin](#createreadstreampin-options)
+  
 #### Statics
 
   * [Gpio.init(options) - initialize GPIO's global settings](#gpioinitoptions)
@@ -233,6 +235,67 @@ Change GPIO value.
 ##### sleep(ms[,async])
 
 Sleep for a few milliseconds. If async is `true`, it will return a promise.
+
+##### createReadStream(pin[, options])
+
+Experimental. See the following code:
+
+**log input value to stdout**
+
+```js
+const Gpio = require('../lib/index.js').Gpio;
+
+var gs = Gpio.createReadStream(32, {throttle: 100});
+
+gs.pipe(process.stdout);
+
+process.on("SIGINT", function(){
+  gs.end();
+  process.exit(0);
+});
+```
+
+##### createWriteStream(pin[, options])
+
+Experimental. See the following code:
+
+**read from stdin and set value**
+
+```js
+const Gpio = require('../lib/index.js').Gpio;
+
+var gs = Gpio.createWriteStream(40, {
+  mode: Gpio.OUTPUT,
+  state: Gpio.HIGH
+});
+
+console.log('Please input value of P40.');
+
+process.stdin.pipe(gs);
+
+process.on("SIGINT", function(){
+  gs.end();
+  process.exit(0);
+});
+```
+
+**trace input/output pins**
+
+```js
+const Gpio = require('../lib/index.js').Gpio;
+
+var input = Gpio.createReadStream(32, {throttle: 100});
+
+var output = Gpio.createWriteStream(40);
+
+input.pipe(output);
+
+process.on("SIGINT", function(){
+  input.end();
+  output.end();
+  process.exit(0);
+});
+```
 
 ---
 
@@ -369,7 +432,7 @@ assertEqual(gpio.edge, Gpio.POLL_NONE);
 ---
 ##### GpioGroup(pins, activeLow)
 
-Exprimental. See the following example:
+Experimental. See the following example:
 
 ```js
 var GpioGroup = require('./lib/index.js').GpioGroup;
