@@ -110,7 +110,7 @@ process.on("SIGINT", function(){
 #### Properties
 
   * [value:0|1 - Set/Get GPIO value](#value01)
-  * [state:0|1|2 - Set/Get GPIO state](#state:01)
+  * [state:0|1|2 - Set/Get GPIO state](#state01)
   * [mode:0|1 - Set/Get GPIO input/output direction](#mode01)
   * [activeLow:boolean - GPIO activeLow setting](#activelow-boolean)
 
