@@ -238,7 +238,7 @@ Sleep for a few milliseconds. If async is `true`, it will return a promise.
 
 ##### createReadStream(pin[, options])
 
-Experimental. See the following code:
+Experimental. See the following example:
 
 **log input value to stdout**
 
@@ -257,7 +257,7 @@ process.on("SIGINT", function(){
 
 ##### createWriteStream(pin[, options])
 
-Experimental. See the following code:
+Experimental. See the following example:
 
 **read from stdin and set value**
 
