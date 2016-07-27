@@ -121,7 +121,8 @@ process.on("SIGINT", function(){
   * [change - Triggering an event when GPIO signal `rising` or `falling`](#eventchange)
 
 #### Constants
-
+  
+  - Gpio.UNKNOWN = -1;
   - Gpio.HIGH = 1;
   - Gpio.LOW = 0;
   - Gpio.INPUT = 0;
@@ -129,7 +130,7 @@ process.on("SIGINT", function(){
   - Gpio.PULL_OFF = 0;
   - Gpio.PULL_DOWN = 1;
   - Gpio.PULL_UP = 2;
-  - Gpio.PULL_DEFAULT = 3;
+  - Gpio.PULL_DEFAULT = -1;
   - Gpio.POLL_NONE = 0;
   - Gpio.POLL_LOW = 1;
   - Gpio.POLL_HIGH = 2;
