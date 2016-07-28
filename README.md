@@ -1,5 +1,10 @@
 # rpio2
 
+[![npm status](https://img.shields.io/npm/v/rpio2.svg)](https://www.npmjs.org/package/rpio2)
+[![build status](https://api.travis-ci.org/akira-cn/rpio2.svg?branch=master)](https://travis-ci.org/akira-cn/rpio2) 
+[![dependency status](https://david-dm.org/akira-cn/rpio2.svg)](https://david-dm.org/akira-cn/rpio2) 
+[![coverage status](https://img.shields.io/coveralls/akira-cn/rpio2.svg)](https://coveralls.io/github/akira-cn/rpio2)
+
 Export elegant OOP APIs to control Raspberry Pi GPIO pins with Node.js. Based on [node-rpio](https://github.com/jperkin/node-rpio) which is a high performace library.
 
 ## Installation
