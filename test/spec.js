@@ -49,10 +49,10 @@ describe('rpio2 tests', function(){
     });
 
     it('test rpio sim 3', function(cb){
-      var gpio = rpio.open(32, rpio.INPUT);
+      rpio.open(32, rpio.INPUT);
       
       rpio.poll(32, function(pin){
-        console.log('changed:' + pin);
+        //console.log('changed:' + pin);
         expect(rpio.read(pin)).to.equal(1);
       }, rpio.POLL_BOTH);
 
@@ -107,9 +107,72 @@ describe('rpio2 tests', function(){
         .then(function(){
           expect(i % 2).to.equal(1 ^ gpio.value);
           if(i++ < 10) loop();
-          else done();
+          else {
+            gpio.close();
+            done();
+          }
         })
       }();
     });
+    it('async toggle 2', function(done){
+      var gpio = new Gpio(40);
+      gpio.open(Gpio.OUTPUT);
+
+      wait.every(50).limit(10).and(function(i){
+        expect(i % 2).to.equal(gpio.value);
+        gpio.toggle();
+
+      }).forward().catch(function(){
+        gpio.close(40);
+        done();
+      });     
+    });
+
+    it('read pin', function(done){
+      var input = new Gpio(40);
+      input.open(Gpio.INPUT);
+      
+      var values = [];
+
+      rpio.helper(40, [0,100,1,100,0,100,1,100,0,100,1,100,0,100,1])
+        .then(function(){
+          expect(values.join('')).to.equal('01010');
+          input.close();
+          done();
+        });
+
+      wait.after(90).every(100).limit(5).and(function(){
+        values.push(input.value)
+      }).forward();
+    });
+
+    it('events', function(done){
+      var input = new Gpio(32);
+      input.open(Gpio.INPUT);
+      
+      setTimeout(function(){
+        rpio.helper(32, [0, 100,1,100,0,100,1,100,0])
+          .then(function(){
+            expect(rCount).to.equal(2);
+            expect(fCount).to.equal(2);
+            input.close();
+            done();
+          }).catch(err=>console.log(err));
+      }, 200);
+
+      var rCount = 0, fCount = 0;
+      input.on('rising', function(pin){
+        //console.log('rising', input.value);
+        expect(pin.value).to.equal(1);
+        rCount++;
+      });
+      
+      input.on('falling', function(pin){
+        //console.log('falling', input.value);
+        expect(pin.value).to.equal(0);
+        fCount++;
+      });
+    });
+
   });
 });

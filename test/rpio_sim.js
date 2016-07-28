@@ -43,7 +43,7 @@ var fs = require('fs');
 var chokidar = require('chokidar');
 
 module.exports = {
-  helper: function (pin, signal, cb){
+  helper: function (pin, signal){
     if(config.mapping === 'physical'){
       pin = pinMap[pin];
     }    
@@ -123,8 +123,13 @@ module.exports = {
       console.error('no such pin.');
       return;
     }
-
+    var gpio = gpios[pin];
     var file = './test/gpio/gpio' + pin;
+    if(gpio.watcher){
+      gpio.watcher.unwatch(file);
+      gpio.watcher.close();
+      delete gpio.watcher;
+    }
     fs.unlinkSync(file);
     delete gpios[pin];
   },
@@ -177,19 +182,33 @@ module.exports = {
     var file = './test/gpio/gpio' + gpioPin;
 
     if(cb){
+      //console.log('add watcher', file, direction);
       var self = this;
-      setTimeout(function(){
-        chokidar.watch(file).on('change', function(path){
-          if(gpio.value == 1 && (direction === self.POLL_HIGH || direction === self.POLL_BOTH)){
-            cb(pin);
-          }
-          if(gpio.value == 0 && (direction === self.POLL_LOW || direction === self.POLL_BOTH)){
-            cb(pin);
-          }        
-        });
+      gpio.watcher = chokidar.watch(file);
+
+      gpio.watcher.on('change', function(path){
+        if(gpio.watchedValue == null){
+          gpio.watchedValue = gpio.value; //first created
+          return;
+        }else if(gpio.watchedValue === gpio.value){
+          return;
+        }
+        gpio.watchedValue = gpio.value;
+        //console.log('trigger watcher', direction);
+        if(gpio.value == 1 && (direction === self.POLL_HIGH || direction === self.POLL_BOTH)){
+          cb(pin);
+        }
+        if(gpio.value == 0 && (direction === self.POLL_LOW || direction === self.POLL_BOTH)){
+          cb(pin);
+        }        
       });
     }else{
-      chokidar.unwatch(file);
+      if(gpio.watcher){
+        gpio.watcher.unwatch(file);
+        gpio.watcher.close();
+        //console.log('remove watcher', file);
+        delete gpio.watcher;
+      }
     }
   },
   msleep: function(ms){

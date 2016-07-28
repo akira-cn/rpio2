@@ -8,7 +8,7 @@ wait.every(500).and(function(){
   //forever - never return true
   gpio.toggle();
 
-}).forever();
+}).forward();
 
 process.on("SIGINT", function(){
   gpio.close();

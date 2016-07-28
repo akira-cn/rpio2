@@ -7,8 +7,9 @@
     "rpio": "^0.9.11"
   },
   "devDependencies": {
+    "consoler": "^0.2.0",
     "chokidar": "^1.6.0",
-    "wait-promise": "^0.3.2",
+    "wait-promise": "0.4.1",
     "babel-cli": "6.x.x",
     "babel-runtime": "6.x.x",
     "mocha": "^2.3.4",
@@ -17,7 +18,9 @@
     "babel-plugin-transform-coverage": "^0.1.5"
   },
   "scripts": {
-    "test": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js && mocha test/spec.js"
+    "test": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js && mocha test/spec.js",
+    "printcov": "script/printcov.js  test/coverage.lcov lib",
+    "test-cov": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js,transform-coverage && mocha test/spec.js --reporter=mocha-lcov-reporter > test/coverage.lcov && npm run printcov"
   },
   "repository": {
     "type": "git",
