@@ -19,8 +19,8 @@
   },
   "scripts": {
     "test": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js && mocha test/spec.js",
-    "printcov": "script/printcov.js  test/coverage.lcov lib",
-    "test-cov": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js,transform-coverage && mocha test/spec.js --reporter=mocha-lcov-reporter > test/coverage.lcov && npm run printcov"
+    "printcov": "script/printcov.js  lib/coverage.lcov lib",
+    "test-cov": "babel lib --out-dir test/lib --plugins ../test/transform_rpio_sim.js,transform-coverage && mocha test/spec.js --reporter=mocha-lcov-reporter > lib/coverage.lcov && npm run printcov"
   },
   "repository": {
     "type": "git",

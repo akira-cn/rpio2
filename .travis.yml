@@ -6,4 +6,4 @@ before_install:
   - sh travis_pre_install.sh 
 script:
   - "npm run test-cov"
-after_script: "npm install coveralls && cd test &&  cat coverage.lcov | ../node_modules/coveralls/bin/coveralls.js && cd .."
+after_script: "npm install coveralls && cd lib &&  cat coverage.lcov | ../node_modules/coveralls/bin/coveralls.js && cd .."
