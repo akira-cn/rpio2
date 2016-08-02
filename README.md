@@ -106,7 +106,7 @@ process.on("SIGINT", function(){
   * [sleep(ms[,async]) - Sleep for a few milliseconds](#sleepmsasync)
   * [createReadStream(pin[, options]) - Create a readable stream from a pin](#createreadstreampin-options)
   * [createWriteStream(pin[, options]) - Create a writable stream for a pin](#createwritestreampin-options)
-  * [group(pins[, activeLow])] - Create a group of GPIOs(#grouppins-activelow)
+  * [group(pins[, activeLow]) - Create a group of GPIOs](#grouppins-activelow)
   
 #### Statics
 
