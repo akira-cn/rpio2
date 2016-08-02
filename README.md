@@ -97,7 +97,7 @@ process.on("SIGINT", function(){
 
 #### Methods
 
-  * [Gpio(pin, activeLow) - Constructor](#gpiopinactivelow)
+  * [Gpio(pin[, activeLow]) - Constructor](#gpiopin-activelow)
   * [open(mode[, state]) - Export the GPIO to userspace](#openmode-state)
   * [close() - Unexport the GPIO](#close)
   * [read() - Get GPIO value](#read)
@@ -106,6 +106,7 @@ process.on("SIGINT", function(){
   * [sleep(ms[,async]) - Sleep for a few milliseconds](#sleepmsasync)
   * [createReadStream(pin[, options]) - Create a readable stream from a pin](#createreadstreampin-options)
   * [createWriteStream(pin[, options]) - Create a writable stream for a pin](#createreadstreampin-options)
+  * [group(pins[, activeLow])] - Create a group of GPIOs(#grouppins-activeLow)
   
 #### Statics
 
@@ -143,7 +144,7 @@ process.on("SIGINT", function(){
 
 ### Class GpioGroup
 
-  * [GpioGroup(pins, activeLow) - Constructor](#gpiopinactivelow)
+  * [GpioGroup(pins[, activeLow]) - Constructor](#gpiogrouppins-activelow)
 
 ---
 
@@ -302,6 +303,10 @@ process.on("SIGINT", function(){
   process.exit(0);
 });
 ```
+
+##### group(pins[, activeLow])
+
+Create GpioGroup instance. See [GpioGroup(pins[, activeLow]) - Constructor](#gpiogrouppins-activelow).
 
 ---
 
